@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ScraperConsoleApp": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
