@@ -1,31 +1,33 @@
 ﻿using ScraperConsoleApp.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-
-
 
 namespace ScraperConsoleApp.Client
 {
     internal class TvMazeClient : ITvMazeClient
     {
-        public async Task<List<Show>> GetShows(int pageNr)
+        private readonly HttpClient _httpClient;
+
+        public TvMazeClient(HttpClient httpClient)
         {
-            using HttpClient client = new();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            await using Stream stream =
-                await client.GetStreamAsync($"https://api.tvmaze.com/shows?page={pageNr}");
-
-            var response = await JsonSerializer.DeserializeAsync<List<Show>>(stream);
-
-            return response ?? new();
+            _httpClient = httpClient;
         }
 
+        public async Task<List<Show>> GetShows(int pageNr)
+        {
+            try
+            {
+                await using Stream stream =
+                    await _httpClient.GetStreamAsync($"https://api.tvmaze.com/shows?page={pageNr}");
+
+                var response = await JsonSerializer.DeserializeAsync<List<Show>>(stream);
+
+
+                return response ?? new();
+            }
+            catch (HttpRequestException hEx) when (hEx.StatusCode == System.Net.HttpStatusCode.NotFound) 
+            {
+                return new();
+            }
+        }
     }
 }

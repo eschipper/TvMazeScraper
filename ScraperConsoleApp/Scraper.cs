@@ -1,41 +1,46 @@
 ﻿using Microsoft.Extensions.Logging;
 using ScraperConsoleApp.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ScraperConsoleApp.Repositories;
 
 namespace ScraperConsoleApp
 {
     internal class Scraper
     {
         private readonly ITvMazeClient _client;
+        private readonly IScraperRepository _repository;
+        private readonly IShowMerger _showMerger;
         private readonly ILogger _logger;
 
-        public Scraper(ITvMazeClient client, ILogger<Scraper> logger)
+        public Scraper(ITvMazeClient client, 
+            IScraperRepository repository, 
+            IShowMerger showMerger, 
+            ILogger<Scraper> logger)
         {
             _client = client;
+            _repository = repository;
+            _showMerger = showMerger;
             _logger = logger;
         }
 
         public async Task StartScrapingAsync()
         {
+            await _repository.EnsureDatabaseAsync();
             _logger.LogInformation("Start scraping");
 
-            int currentPageNumber = 0;            
+            int currentPageNumber = 293;
             
             // Replace by cron mechanism
             while (true)
             {
-
-                _logger.LogInformation($"   Get shows for page {currentPageNumber}");
+                _logger.LogInformation("   Get shows for page {CurrentPageNumber}", currentPageNumber);
 
                 var shows = await _client.GetShows(currentPageNumber);
 
-                if (shows.Any())
+                if (shows.Count != 0)
                 {
-                    _logger.LogInformation($"   {shows.Count} shows found");
+                    _logger.LogInformation("   {ShowCount} shows found", shows.Count);
+
+                    await _showMerger.MergeShows(shows);
 
                     currentPageNumber++;
 
