@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using ScraperConsoleApp.Client;
 
 namespace ScraperConsoleApp
@@ -18,7 +19,9 @@ namespace ScraperConsoleApp
         private static IHost CreateHost() =>
             Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => 
-                { 
+                {
+                    var config = context.Configuration;
+
                     services.AddSingleton<ITvMazeClient, TvMazeClient>();
                 })
                 .Build();               

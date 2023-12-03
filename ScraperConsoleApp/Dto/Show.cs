@@ -11,7 +11,7 @@
         public string[] genres { get; set; }
         public string status { get; set; }
         public int? runtime { get; set; }
-        public int averageRuntime { get; set; }
+        public int? averageRuntime { get; set; }
         public string premiered { get; set; }
         public string ended { get; set; }
         public string officialSite { get; set; }
