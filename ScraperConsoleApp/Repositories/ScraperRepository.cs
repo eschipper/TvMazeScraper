@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
-using ScraperConsoleApp.Model;
+using Models;
 
 namespace ScraperConsoleApp.Repositories
 {
@@ -28,6 +28,7 @@ namespace ScraperConsoleApp.Repositories
         public async Task UpsertShowAsync(Show show)
         {
             await _showsContainer.UpsertItemAsync(show);
+
         }
     }
 }

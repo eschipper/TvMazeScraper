@@ -11,23 +11,23 @@ namespace ScraperConsoleApp.Mapper
     {
         public  MapperProfile() 
         {
-            CreateMap<Dto._Links, Model._Links>();
+            CreateMap<Dto._Links, Models._Links>();
 
-            CreateMap<Dto.Country, Model.Country>();
-            CreateMap<Dto.Country1, Model.Country1>();
-            CreateMap<Dto.Dvdcountry, Model.Dvdcountry>();
-            CreateMap<Dto.Externals, Model.Externals>();
-            CreateMap<Dto.Image, Model.Image>();
-            CreateMap<Dto.Previousepisode, Model.Previousepisode>();
-            CreateMap<Dto.Network, Model.Network>();
-            CreateMap<Dto.Nextepisode, Model.Nextepisode>();
-            CreateMap<Dto.Rating, Model.Rating>();
-            CreateMap<Dto.Schedule, Model.Schedule>();
-            CreateMap<Dto.Self, Model.Self>();
-            CreateMap<Dto.Webchannel, Model.Webchannel>();
+            CreateMap<Dto.Country, Models.Country>();
+            CreateMap<Dto.Country1, Models.Country1>();
+            CreateMap<Dto.Dvdcountry, Models.Dvdcountry>();
+            CreateMap<Dto.Externals, Models.Externals>();
+            CreateMap<Dto.Image, Models.Image>();
+            CreateMap<Dto.Previousepisode, Models.Previousepisode>();
+            CreateMap<Dto.Network, Models.Network>();
+            CreateMap<Dto.Nextepisode, Models.Nextepisode>();
+            CreateMap<Dto.Rating, Models.Rating>();
+            CreateMap<Dto.Schedule, Models.Schedule>();
+            CreateMap<Dto.Self, Models.Self>();
+            CreateMap<Dto.Webchannel, Models.Webchannel>();
             
 
-            CreateMap<Dto.Show, Model.Show>();
+            CreateMap<Dto.Show, Models.Show>();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace ScraperConsoleApp.Model
+﻿namespace Models
 {
-    public class Country
+    public class Country1
     {
         public string name { get; set; }
         public string code { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace ScraperConsoleApp.Model
+﻿namespace Models
 {
     public class Image
     {

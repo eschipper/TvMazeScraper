@@ -1,4 +1,4 @@
-﻿using ScraperConsoleApp.Model;
+﻿using Models;
 
 namespace ScraperConsoleApp.Repositories
 {

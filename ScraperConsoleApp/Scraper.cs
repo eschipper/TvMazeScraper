@@ -27,7 +27,7 @@ namespace ScraperConsoleApp
             await _repository.EnsureDatabaseAsync();
             _logger.LogInformation("Start scraping");
 
-            int currentPageNumber = 293;
+            int currentPageNumber = 0;
             
             // Replace by cron mechanism
             while (true)

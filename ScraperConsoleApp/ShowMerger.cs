@@ -29,7 +29,7 @@ namespace ScraperConsoleApp
             {
                 try
                 {
-                    var show = _mapper.Map<Model.Show>(showDto);
+                    var show = _mapper.Map<Models.Show>(showDto);
 
                     await _repository.UpsertShowAsync(show);
                     _logger.LogTrace("        Show with id {ShowId} synced with repo", showDto.id);
