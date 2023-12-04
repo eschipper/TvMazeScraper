@@ -9,16 +9,19 @@ namespace ScraperConsoleApp
         private readonly ITvMazeClient _client;
         private readonly IScraperRepository _repository;
         private readonly IShowMerger _showMerger;
+        private readonly IShowCastMerger _showCastMerger;
         private readonly ILogger _logger;
 
         public Scraper(ITvMazeClient client, 
             IScraperRepository repository, 
-            IShowMerger showMerger, 
+            IShowMerger showMerger,
+            IShowCastMerger showCastMerger,
             ILogger<Scraper> logger)
         {
             _client = client;
             _repository = repository;
             _showMerger = showMerger;
+            _showCastMerger = showCastMerger;
             _logger = logger;
         }
 
@@ -32,7 +35,13 @@ namespace ScraperConsoleApp
             // Replace by cron mechanism
             while (true)
             {
+
+                // todo: switch later
+
+                await _showCastMerger.MergeCast();
+
                 _logger.LogInformation("   Get shows for page {CurrentPageNumber}", currentPageNumber);
+
 
                 var shows = await _client.GetShows(currentPageNumber);
 
@@ -48,6 +57,9 @@ namespace ScraperConsoleApp
                 }
 
                 _logger.LogInformation("No more shows found");
+
+
+
                 currentPageNumber = 0;
 
             }

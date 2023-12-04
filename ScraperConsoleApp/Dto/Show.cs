@@ -26,6 +26,7 @@
         public string summary { get; set; }
         public int updated { get; set; }
         public _Links _links { get; set; }
+        public _Embedded _embedded { get; set; }
     }
 
     public class _Links
@@ -33,6 +34,11 @@
         public Self self { get; set; }
         public Previousepisode previousepisode { get; set; }
         public Nextepisode nextepisode { get; set; }
+    }
+
+    public class _Embedded
+    {
+        public Cast[] cast { get; set; }
     }
 
     public class Self

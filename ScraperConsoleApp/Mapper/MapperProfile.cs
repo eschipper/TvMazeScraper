@@ -25,7 +25,10 @@ namespace ScraperConsoleApp.Mapper
             CreateMap<Dto.Schedule, Models.Schedule>();
             CreateMap<Dto.Self, Models.Self>();
             CreateMap<Dto.Webchannel, Models.Webchannel>();
-            
+            CreateMap<Dto.Cast, Models.Cast>();
+            CreateMap<Dto.Person, Models.Person>();
+            CreateMap<Dto.Character, Models.Character>();
+
 
             CreateMap<Dto.Show, Models.Show>();
         }

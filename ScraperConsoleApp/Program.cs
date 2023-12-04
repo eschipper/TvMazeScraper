@@ -28,6 +28,7 @@ namespace ScraperConsoleApp
                     services.AddSingleton<ITvMazeClient, TvMazeClient>();
                     services.AddSingleton<IScraperRepository, ScraperRepository>();
                     services.AddSingleton<IShowMerger, ShowMerger>();
+                    services.AddSingleton<IShowCastMerger, ShowCastMerger>();
                     services.AddSingleton<CosmosClient>(serviceProvider =>
                     {
                         return new CosmosClient(config.GetConnectionString("Cosmos"));

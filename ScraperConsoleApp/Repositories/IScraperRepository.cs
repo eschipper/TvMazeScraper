@@ -6,5 +6,8 @@ namespace ScraperConsoleApp.Repositories
     {
         Task EnsureDatabaseAsync();
         Task UpsertShowAsync(Show show);
+        IAsyncEnumerable<Show> GetAllShowsAsync();
+        Task UpsertShowCastAsync(ShowCast showCast);
+        IAsyncEnumerable<ShowCast> GetAllShowcastsAsync();
     }
 }
