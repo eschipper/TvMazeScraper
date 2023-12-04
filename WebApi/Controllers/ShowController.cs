@@ -17,12 +17,10 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Show>> Get()
+        public async Task<IEnumerable<Show>> Get(int page = 1)
         {
-            return await Task.FromResult( new List<Show> 
-            {
-                new Show(), new Show() 
-            });
+            var result = await _showRepository.GetAll(page);
+            return result;
         }
 
         [HttpGet("{id}")]

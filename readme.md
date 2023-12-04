@@ -12,3 +12,8 @@ Durable functions would be ok, but too much overkill
 - I could not get the rate limit to trigger / reproduce, even with parallel requests, so I did not give it much attention.
 - The scraper runs indefinately and not with a CRON. It just loops.
 ## Example Appsettings
+
+## Web api
+- Wanted to reuse the model db for convenience
+- ordering by ID proved a challenge because it is a string value
+- paging and sorting are translated into the query, but probably leads to high numbers of RU. If there was more time, I would investigate this further, probably using either continuation tokens or smarter partitioning
