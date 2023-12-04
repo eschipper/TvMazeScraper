@@ -18,6 +18,7 @@ namespace WebApi
             builder.Services.AddSwaggerGen();
             
             builder.Services.AddScoped<IShowRepository, ShowRepository>();
+            builder.Services.AddScoped<IShowCastRepository, ShowCastRepository>();
             builder.Services.AddScoped<CosmosClient>(serviceProvider =>
             {
                 return new CosmosClient(builder.Configuration.GetConnectionString("Cosmos"));
