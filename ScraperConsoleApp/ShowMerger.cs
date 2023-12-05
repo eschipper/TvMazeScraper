@@ -2,11 +2,6 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 using ScraperConsoleApp.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScraperConsoleApp
 {
@@ -23,7 +18,7 @@ namespace ScraperConsoleApp
             _logger = logger;
         }
 
-        public async Task MergeShows(IEnumerable<Dto.Show> shows)
+        public async Task MergeShowsAsync(IEnumerable<Dto.Show> shows)
         {
             foreach (var showDto in shows)
             {
@@ -32,7 +27,7 @@ namespace ScraperConsoleApp
                     var show = _mapper.Map<Models.Show>(showDto);
 
                     await _repository.UpsertShowAsync(show);
-                    _logger.LogTrace("        Show with id {ShowId} synced with repo", showDto.id);
+                    _logger.LogTrace("Show with id {ShowId} synced with repo", showDto.id);
                 }
                 catch (CosmosException cEx)
                 {

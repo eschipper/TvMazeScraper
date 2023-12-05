@@ -2,7 +2,6 @@
 using Microsoft.Azure.Cosmos.Linq;
 using Microsoft.Extensions.Logging;
 using Models;
-using System.Drawing.Printing;
 
 namespace ScraperConsoleApp.Repositories
 {

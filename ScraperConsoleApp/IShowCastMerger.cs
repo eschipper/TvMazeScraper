@@ -4,6 +4,6 @@ namespace ScraperConsoleApp
 {
     public interface IShowCastMerger
     {
-        Task MergeCast();
+        Task MergeCastAsync();
     }
 }

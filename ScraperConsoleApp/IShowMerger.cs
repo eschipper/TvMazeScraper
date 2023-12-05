@@ -4,6 +4,6 @@ namespace ScraperConsoleApp
 {
     public interface IShowMerger
     {
-        Task MergeShows(IEnumerable<Show> shows);
+        Task MergeShowsAsync(IEnumerable<Show> shows);
     }
 }

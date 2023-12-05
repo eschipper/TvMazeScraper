@@ -2,11 +2,6 @@
 using Models;
 using ScraperConsoleApp.Client;
 using ScraperConsoleApp.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScraperConsoleApp
 {
@@ -23,7 +18,7 @@ namespace ScraperConsoleApp
             _mapper = mapper;
         }
 
-        public async Task MergeCast()
+        public async Task MergeCastAsync()
         {
 
             //// see how far we got 
@@ -41,7 +36,7 @@ namespace ScraperConsoleApp
 
             foreach (var myshow in shows)
             {
-                var showWithCastDto = await _tvMazeClient.GetShow(int.Parse(myshow.id), includeCast: true);
+                var showWithCastDto = await _tvMazeClient.GetShowAsync(int.Parse(myshow.id), includeCast: true);
 
                 List<Cast> castList = CreateCast(showWithCastDto);
 
@@ -53,7 +48,6 @@ namespace ScraperConsoleApp
                 };
 
                 await _scraperRepository.UpsertShowCastAsync(showCast);
-
             }
         }
 
