@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using WebApi.Model;
 using WebApi.Repositories;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class ShowCastController : ControllerBase
     {
         private readonly IShowRepository _showRepository;
