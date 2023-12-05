@@ -11,7 +11,7 @@ namespace WebApi.Repositories
 
 
         private const string DatabaseName = "tvmazescraper";
-        private const string ContainerName = "scrapedshows";
+        private const string ContainerName = "showsindex";
         private const int PageSize = 10;
 
         public ShowRepository(CosmosClient client, ILogger<ShowRepository> logger)

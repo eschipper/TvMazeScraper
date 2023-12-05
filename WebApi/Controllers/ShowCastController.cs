@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using WebApi.Logic;
 using WebApi.Model;
 using WebApi.Repositories;
 
@@ -32,33 +33,9 @@ namespace WebApi.Controllers
 
             var showCast = await _showCastRepository.GetById(id);
 
-            var result = new FeaturedShow
-            {
-                Id = id,
-                Name = show.name,
-                Cast = new List<CastMember>(showCast.Cast.Select(
-                    c => new CastMember
-                    {
-                        Id = c.person.id,
-                        Name = c.person.name,
-                        BirthDay = !string.IsNullOrEmpty(c.person.birthday) 
-                            ? DateTime.ParseExact(c.person.birthday, "yyyy-MM-dd", CultureInfo.InvariantCulture) 
-                            : null
-                    }))
-                .OrderByDescending(c => c.BirthDay)
-                
-            };
+            FeaturedShow result = FeaturedShowFactory.Create(show, showCast);
 
             return Ok(result);
         }
-
-
-        
-
-        //[HttpGet]
-        //public Show Get(int id)
-        //{
-        //    return new Show();
-        //}
     }
 }

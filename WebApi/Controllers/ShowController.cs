@@ -30,17 +30,10 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetById(string id)
         {
             var show = await _showRepository.GetById(id);
-
-            if (show == null) 
-            {
-                return NotFound();
-            }
-
-            var result = await _showRepository.GetById(id);
             
-            return result == null 
+            return show == null 
                 ? NotFound() 
-                : Ok(result);
+                : Ok(show);
         }
     }
 }
