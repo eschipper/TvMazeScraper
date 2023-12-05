@@ -20,14 +20,6 @@ namespace ScraperConsoleApp
 
         public async Task MergeCastAsync()
         {
-
-            //// see how far we got 
-            //List<ShowCast> showCasts = new List<ShowCast>();
-            //await foreach (var showCast in _scraperRepository.GetAllShowcastsAsync())
-            //{
-            //    showCasts.Add(showCast);
-            //}
-
             List<Show> shows = new List<Show>();
             await foreach (var show in _scraperRepository.GetAllShowsAsync())
             {

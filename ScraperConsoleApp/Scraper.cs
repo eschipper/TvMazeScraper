@@ -36,13 +36,10 @@ namespace ScraperConsoleApp
             while (true)
             {
 
-                // todo: switch later
-
-                await _showCastMerger.MergeCastAsync();
 
                 _logger.LogInformation("   Get shows for page {CurrentPageNumber}", currentPageNumber);
 
-
+                // Get all shows
                 var shows = await _client.GetShowsAsync(currentPageNumber);
 
                 if (shows.Count != 0)
@@ -55,6 +52,10 @@ namespace ScraperConsoleApp
 
                     continue;
                 }
+
+                // Get Cast for shows
+                await _showCastMerger.MergeCastAsync();
+
 
                 _logger.LogInformation("No more shows found");
 

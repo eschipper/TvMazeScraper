@@ -47,7 +47,7 @@ namespace ScraperConsoleApp.Client
             {
                 _logger.LogWarning(hEx, "rate limit hit");
                 
-                await Task.Delay(5000);
+                await Task.Delay(7000);
                 return await GetShowAsync(id, includeCast);
             }
         }
