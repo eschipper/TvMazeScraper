@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Models;
+using System.Net;
 using WebApi.Repositories;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class ShowController : ControllerBase
     {
         private readonly IShowRepository _showRepository;
@@ -24,28 +25,15 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Show))]
         public async Task<IActionResult> GetById(string id)
         {
             var show = await _showRepository.GetById(id);
-
-            if (show == null) 
-            {
-                return NotFound();
-            }
-
-
-
-            var result = await _showRepository.GetById(id);
             
-            return result == null 
+            return show == null 
                 ? NotFound() 
-                : Ok(result);
+                : Ok(show);
         }
-
-        //[HttpGet]
-        //public Show Get(int id)
-        //{
-        //    return new Show();
-        //}
     }
 }

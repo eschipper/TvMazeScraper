@@ -36,34 +36,32 @@ namespace ScraperConsoleApp
             while (true)
             {
 
-                // todo: switch later
-
-                await _showCastMerger.MergeCast();
 
                 _logger.LogInformation("   Get shows for page {CurrentPageNumber}", currentPageNumber);
 
-
-                var shows = await _client.GetShows(currentPageNumber);
+                // Get all shows
+                var shows = await _client.GetShowsAsync(currentPageNumber);
 
                 if (shows.Count != 0)
                 {
                     _logger.LogInformation("   {ShowCount} shows found", shows.Count);
 
-                    await _showMerger.MergeShows(shows);
+                    await _showMerger.MergeShowsAsync(shows);
 
                     currentPageNumber++;
 
                     continue;
                 }
 
+                // Get Cast for shows
+                await _showCastMerger.MergeCastAsync();
+
+
                 _logger.LogInformation("No more shows found");
-
-
 
                 currentPageNumber = 0;
 
             }
-
         }
     }
 }

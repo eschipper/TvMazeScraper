@@ -2,7 +2,6 @@
 using Microsoft.Azure.Cosmos.Linq;
 using Microsoft.Extensions.Logging;
 using Models;
-using System.Drawing.Printing;
 
 namespace ScraperConsoleApp.Repositories
 {
@@ -11,7 +10,6 @@ namespace ScraperConsoleApp.Repositories
         private readonly CosmosClient _client;
         private readonly ILogger _logger;
 
-        private Container _showsContainer;
         private Container _showsIndexContainer;
         private Container _showCastContainer;
 
@@ -26,7 +24,6 @@ namespace ScraperConsoleApp.Repositories
             _logger.LogInformation("Create database and container if not exists");
             Database database = await _client.CreateDatabaseIfNotExistsAsync("tvmazescraper", 400);
 
-            _showsContainer = await database.CreateContainerIfNotExistsAsync("scrapedshows", "/id");
             _showsIndexContainer = await database.CreateContainerIfNotExistsAsync("showsindex", "/id");
             _showCastContainer = await database.CreateContainerIfNotExistsAsync("showcasts", "/id");
 

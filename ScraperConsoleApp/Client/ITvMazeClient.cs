@@ -4,7 +4,7 @@ namespace ScraperConsoleApp.Client
 {
     public interface ITvMazeClient
     {
-        Task<List<Show>> GetShows(int pageNr);
-        Task<Show> GetShow(int id, bool includeCast);
+        Task<List<Show>> GetShowsAsync(int pageNr);
+        Task<Show> GetShowAsync(int id, bool includeCast);
     }
 }

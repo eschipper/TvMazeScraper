@@ -1,5 +1,4 @@
-﻿using Azure;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using ScraperConsoleApp.Dto;
 using System.Text.Json;
 
@@ -16,7 +15,7 @@ namespace ScraperConsoleApp.Client
             _logger = logger;
         }
 
-        public async Task<List<Show>> GetShows(int pageNr)
+        public async Task<List<Show>> GetShowsAsync(int pageNr)
         {
             try
             {
@@ -34,7 +33,7 @@ namespace ScraperConsoleApp.Client
             }
         }
 
-        public async Task<Show> GetShow(int id, bool includeCast = false)
+        public async Task<Show> GetShowAsync(int id, bool includeCast = false)
         {
             try
             {
@@ -48,8 +47,8 @@ namespace ScraperConsoleApp.Client
             {
                 _logger.LogWarning(hEx, "rate limit hit");
                 
-                await Task.Delay(5000);
-                return await GetShow(id, includeCast);
+                await Task.Delay(7000);
+                return await GetShowAsync(id, includeCast);
             }
         }
     }

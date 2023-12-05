@@ -1,5 +1,6 @@
 
 using Microsoft.Azure.Cosmos;
+using WebApi.Middleware;
 using WebApi.Repositories;
 
 namespace WebApi
@@ -23,6 +24,7 @@ namespace WebApi
             {
                 return new CosmosClient(builder.Configuration.GetConnectionString("Cosmos"));
             });
+            builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
             var app = builder.Build();
 
@@ -37,6 +39,7 @@ namespace WebApi
 
             app.UseAuthorization();
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.MapControllers();
 
